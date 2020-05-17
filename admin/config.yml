@@ -1,0 +1,48 @@
+backend:
+  name: git-gateway
+  branch: master # Branch to update (optional; defaults to master)
+publish_mode: editorial_workflow
+media_folder: "assets/images/" # Media files will be stored in the repo under images/uploads
+  
+collections:
+- name: "posts" # Used in routes, e.g., /admin/collections/posts
+  label: "Post" # Used in the UI
+  folder: "_posts" # The path to the folder where the documents are stored
+  create: true # Allow users to create new documents in this collection
+  slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+  fields: # The fields for each document, usually in front matter
+    - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
+    - {label: "Title", name: "title", widget: "string"}
+    - {label: "Publish Date", name: "published", widget: "datetime"}
+    - {label: "Updated Date", name: "date", widget: "datetime"}
+    - {label: "Featured Image", name: "thumbnail", widget: "image", required: false, hint: "Feature image must be 1920x288px"}
+    - {label: "Categories", name: "categories", widget: "string", required: false}
+    - {label: "Tags", name: "tags", widget: "list", required: false}
+    - {label: "Comments", name: "comments", default: false, widget: "boolean"}
+    - {label: "Body", name: "body", widget: "markdown"}
+
+- name: "pages"
+  label: "Pages"
+  create: false
+  files:
+    - file: "_pages/about.md"
+      label: "About me"
+      name: "about"
+      fields:
+        - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
+        - {label: "Title", name: "title", widget: "string"}
+        - {label: "Link", name: "permalink", widget: "string"}
+        - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+        - {label: "Description", name: "description", widget: "string", required: false}
+        - {label: "Body", name: "body", widget: "markdown"}
+
+    - file: "_pages/contact.md"
+      label: "Contact"
+      name: "contact"
+      fields:
+        - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
+        - {label: "Title", name: "title", widget: "string"}
+        - {label: "Link", name: "permalink", widget: "string"}
+        - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+        - {label: "Description", name: "description", widget: "string", required: false}
+        - {label: "Body", name: "body", widget: "markdown"}

@@ -1,0 +1,30 @@
+# Change 'comments' to true for Disqus comments
+disqus:
+  comments: false
+  disqus_shortname: 'apham'
+
+# If you are not using Google Analytics, please change 'google-ID' to an empty string
+google-ID: ''
+
+menu: 
+
+  - name: Posts
+    link: /
+  - name: Tags
+    link: /tags
+  - name: About me
+    link: /about
+  - name: Contact
+    link: /contact
+  # - name: Follow me
+    # submenu:
+    #   - name: GitHub
+    #     icon: github
+    #     link: http://github.com/jaimelaborda
+    #   - name: LinkedIn
+    #     icon: linkedin-square
+    #     link: http://www.linkedin.com/in/jaimelaborda
+    #   - name: Twitter
+    #     icon: twitter
+    #     link: https://twitter.com/jaimelaborda
+    
