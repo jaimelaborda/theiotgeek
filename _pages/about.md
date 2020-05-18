@@ -12,11 +12,10 @@ I  you want to contact me, please do not hesitate to send me an email using the 
 You can also follow me on social medias, althought I have to admit I'm not to into social media:
 
 <p>
-You can also follow me on social media:  <br>
-<a href="http://github.com/alainpham">
+<a href="http://github.com/jaimelaborda">
 			<i class="fa fa-github fa-3x"></i></a>
-	<a href="http://www.linkedin.com/in/alainpham">
+	<a href="http://www.linkedin.com/in/jaimelaborda">
 			<i class="fa fa-linkedin-square fa-3x"></i></a>
-	<a href="https://twitter.com/koint">
+	<a href="https://twitter.com/jaimelaborda">
 			<i class="fa fa-twitter fa-3x"></i></a>
 </p>
