@@ -40,10 +40,6 @@ Jekyll is an open source static site generator written in [Ruby ](https://www.ru
 
 Jekyll, and all the others static generators, use what is known as layouts o templates. This is normally a HTML like file that has some directives that are substituted by your content. Nevertheless this is not intended to be a tutorial on how to use Jekyll, if you are looking for more information, the documentation of Jekyll is pretty good: <https://jekyllrb.com/docs/>
 
-## Github Integration
-
-
-
 ## Netlify CMS
 
 Jekyll is very cool but it is perhaps a little geeky (well, that is what the blog is about, right?). Yes, we do love geeky things but I wanted to have a way to make it even simpler. So I was looking more to a Wordpress like approach and I find Netlify CMS. 
@@ -60,21 +56,25 @@ I could have done a step-by-step guide to how I've put it together but I think i
 
 Constructing the CMS with a CDN link has the advantage that you will never have to worry about updates! It will always be updated, at least in theory...
 
-\[CONTAR QUE TIENE PREVIEWS CUSTOMIZABLES, GESTION DE LOS POSTS, DE LAS PAGES, DEFINICIÓN DE COLLECTIONS, ETC]
+What I love about Netlify CMS is that it simplifies a lot the post and page management, as well as taking care about draft and so on. It also has a media manager for you to add/update/remove images and it is really easy to configure.
 
 ## Netlify Continuous Deployment
 
-[Netlify](https://www.netlify.com/) is just a [PaaS](https://azure.microsoft.com/en-gb/overview/what-is-paas/) that offers a cloud hosting and building platform for your 
+[Netlify](https://www.netlify.com/) is just a [PaaS](https://azure.microsoft.com/en-gb/overview/what-is-paas/) that offers a cloud hosting and building platform for your websites, specifically for static websites like this ones. So, the idea is that you have your website source code in your machine or whatever online repository and you push it to Netlify, that it is charge of build your static files and host it to serve on the internet. It also cares about SSL, HTTPs and these weird things we need this days.
 
 Combining Netlify CMS with Netlify has a lot of advantages, it offers a Continuous Deployment integration (also known as CI/CD). This means that it automates the deployment of your website and makes it very easy to use, as you don't have to take around with pesky commands, dependencies and packages installed on your computer, you just make your commit (with Netlify CMS this is just click "Publish") and Netlify CMS does everything for you. It compiles and build the application to generate the static files and then it deploys this static files to their own host. Yes, it also sever as your host. 
 
-Netlify CMS is a service so it has a free tier that, of course, has some limitations as a 100GB maximum bandwith I wish I have so many visitors but it will not be the case. It also offers a pro and enterprise pricing tags. But, for the bast mayority of user, and for this personal blog, with the free plan will be enough.
+Netlify is a service so it has a free tier that, of course, has some limitations as a 100GB maximum bandwidth I wish I have so many visitors but it will not be the case. It also offers a pro and enterprise pricing tags. But, for the bast majority of user, and for this personal blog, with the free plan will be enough.
+
+## Github Integration
+
+Furthermore, this cool things have a good integration with Github, that will be the perfect place to store and track your blog source code, as well as posting your draft posts as pull request on another branch. 
 
 ## Conclusions
 
 If you are looking to start up a blog I wonder you take a look to static websites generators
 
-And if you still want more I invite you to have a look to the ins and outs of this blog by visiting its Github repository at [github.com/jaimelaborda/theiotgeek](https://github.com/jaimelaborda/theiotgeek). Feel free to Fork the repo and to build in your own machine or with Netlify (should be ready to play). Also feel free to make me a pull request (I would greatly appreciate any help with my English or wathever thing you are not confortable with)
+And if you still want more I invite you to have a look to the ins and outs of this blog by visiting its Github repository at [github.com/jaimelaborda/theiotgeek](https://github.com/jaimelaborda/theiotgeek). Feel free to Fork the repo and to build in your own machine or with Netlify (should be ready to play). Also feel free to make me a pull request (I would greatly appreciate any help with my English or whatever thing you are not confortable with)
 
 ## Bibliography
 
