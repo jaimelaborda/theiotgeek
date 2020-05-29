@@ -211,3 +211,10 @@ h3:before {
 		background-color: #12421f;
 	}
 }
+
+/* All images to be Image responsive */
+img {
+	display: block;
+    max-width: 100%;
+    height: auto;
+}
