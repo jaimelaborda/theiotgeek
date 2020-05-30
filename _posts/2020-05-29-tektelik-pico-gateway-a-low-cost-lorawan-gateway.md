@@ -26,8 +26,12 @@ The Tektelic KONA Pico is the cheapest product in their catalogue and it is inte
 
 \[Teardown with photos]
 
+
+
 # Connecting it to TTN
 
+This gateway configuration is very different for what I was used to. I'm used to work with gateways that usually runs some custom Linux based firmware, usually Yocto distro in case of the Multitech Conduit, or Debian in case of the RAK but always with SSH support. But, I was surprise on my first attempt to configure this things as I cannot SSH it and I have to dig around with it and ask for support help to Tektelic. In fact, this is one of the main causes why I'm writing this post, as I thing it may help others Makers like me to get it working without pain.
 
+The first you may be aware of is that Tektelic seems to be a little bit closed with that things as it is more focused on the professional and industrial market, than on the Maker side, so you have to request the documentation (registering on their [Tektelic support website](https://support.tektelic.com/)) as it is not easy to found online. 
 
 # Conclusions
