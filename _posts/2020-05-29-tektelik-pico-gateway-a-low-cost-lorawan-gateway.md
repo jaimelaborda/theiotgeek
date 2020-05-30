@@ -24,6 +24,26 @@ The Tektelic KONA Pico is the cheapest product in their catalogue and it is inte
 
 # Take it apart!
 
+First things first... What is it inside this thing? The answer is not to exciting, we have what we were expecting, nothing fancy, but as you can see on the photos the layout quality is pretty good and the RF design excellent. No doubt they have pay quite a lot attention to details and everythings looks fantastic. Well it is what you expect  from a company like Tektelic, right?
+
+![](/assets/images/tektelic_pcba_blocks.png)
+
+We found a one single PCB construction, so it seems that they have layout the board from scratch, what it is not so common in LoRaWAN gateways as normally they tend to design a mini-pcie size 8-channels LoRa board with the difficult part (that is the radio frequency section) and they reuse it on all of their designs. It is not uncommon to subcontract this module to a RF expert third party and include it as a block in your product. This option is also the most common as it is more flexible, and it saves a lot of design efforts reducing the time to market of your product. But on the other hand, it is probably more expensive to produce as there is two boards to manufacture and then to assemble together, so it is not surprising that Tektelic has opt for the cheapest for their low cost gateway, despite the bigger design effort. Also, Tektelic has a lot of experience on RF design (it is it's thing), so I have no doubt they have design the whole board theyself and they have done a really good job.
+
+We found a [NXP Kinetics 64bit ARM M4 microcontroller](https://www.nxp.com/products/processors-and-microcontrollers/arm-microcontrollers/general-purpose-mcus/k-series-cortex-m4/k6x-ethernet/kinetis-k64-120-mhz-256-kb-sram-microcontrollers-mcus-based-on-arm-cortex-m4-core:K64_120) as main CPU (microcontroller? not a microprocessor? we will talk later about that). This is a low cost low power all included powerful microcontroller running up to 120MHz
+
+
+
+No surprise also with the design as we found the typical chips for a LoRaWAN gateway. A
+
+One 
+
+![](/assets/images/tektelic_embedded_antenna.jpg)
+
+
+
+
+
 \[Teardown with photos]
 
 
