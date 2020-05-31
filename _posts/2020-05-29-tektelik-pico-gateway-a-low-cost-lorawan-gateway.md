@@ -1,8 +1,8 @@
 ---
 layout: default
 title: "Tektelik KONA Micro Lite: A low cost LoRaWAN gateway"
-published: 2020-05-29T18:55:02.218Z
-date: 2020-05-29T18:55:02.243Z
+published: 2020-05-31T19:02:34.635Z
+date: 2020-05-31T19:02:35.406Z
 thumbnail: /assets/images/tektelic-2.png
 categories: lorawan
 tags:
@@ -10,8 +10,6 @@ tags:
   - gateway
 comments: false
 ---
-![]()
-
 LoRaWAN gateways are getting cheaper and cheaper everyday, and nowadays (May 2020) we have available 8 channel LoRaWAN compliant gateways for under 100€ ([TTIG](https://www.thethingsnetwork.org/docs/gateways/thethingsindoor/) is around [80€](https://es.rs-online.com/web/p/kits-de-desarrollo-de-radio-frecuencia/1843981/)). In the post we will see all the bells whistles on how to configure on of this gateway, the Tektelic KONA Micro Lite, to connect to The Things Network LoRaWAN server and we will compare it with another options available on the market.
 
 <!--more-->
@@ -56,17 +54,19 @@ We found a one single PCB construction, so it seems that they have layout the bo
 
 We found a [NXP Kinetics 64bit ARM M4 microcontroller](https://www.nxp.com/products/processors-and-microcontrollers/arm-microcontrollers/general-purpose-mcus/k-series-cortex-m4/k6x-ethernet/kinetis-k64-120-mhz-256-kb-sram-microcontrollers-mcus-based-on-arm-cortex-m4-core:K64_120) as main CPU (microcontroller? not a microprocessor? we will talk later about that). This is a low cost low power all included powerful microcontroller running up to 120MHz
 
-No surprise also with the design as we found the typical chips for a LoRaWAN gateway. A
+No surprise also with the RF design as we found the typical chips for a LoRaWAN gateway, the SX1308 digital signal processor for modulating/demodulating the RF signals and surely two SX1257 below the RF shielding can.
 
-One 
-
-\[EMBEDDED ANTENNA]
+What has caught my attention is the footprint we see next to the SMA connectors that appears to be for a chip antenna, so we may have an option for placing an embedded antena for a even more size reduction. I hav e not been able to found the specific Part Number for this.
 
 ![](/assets/images/tektelic_embedded_antenna_1176x768.jpg)
 
-\[WIFI]
+We also found a place for what it looks like a Wifi module, in fact it is, do they plan to build WiFi in this thing but couldn't get the right price point? Do the firmware support it so we can put it in the future? Will Tektelic offer a WiFi version in the future? I don't know.
 
 ![](/assets/images/tektelic_wifi_1366x708.jpg)
+
+What I know is that the they have left some trace in the firmware that indicates that the footprints WiFi module appears to be a [ISM-43362-MG3](https://www.inventeksys.com/wp-content/uploads/ISM43362_M3G_L44_Functional_Spec.pdf) from **Inventek Systems**. Cool! But I have not found any manner to indicate to the firmware that it connects to a specific SSID and password.
+
+If you are interested, you can download some more high res photos from [here](https://photos.app.goo.gl/UzdSsmK7B24SvDnM9).
 
 # Connecting it to TTN
 
@@ -116,7 +116,6 @@ In order to get ir working you just have (at least in my case) to update the *Cu
         "down_port": 1700
     }
 }
-
 ```
 
 **LoRaWAN.json**
@@ -338,7 +337,6 @@ In order to get ir working you just have (at least in my case) to update the *Cu
         ]
     }
 }
-
 ```
 
 In order to transfer to the router, in Ubuntu you have to install tftp from apt in order to transfer these files:
@@ -357,4 +355,4 @@ If everything is okay, the power LED will stop blinking and come fixed, also it 
 
 # Conclusions
 
-A good option
+For around [140€](https://connectedthings.store/gb/lorawan-gateways/indoor-lorawan-gateways/tektelic-kona-micro-lite-iot-lorawan-gateway.html?SubmitCurrency=1&id_currency=2) this is a good option for a low cost 8 channel LoRaWAN gateway from a reputed brand as Tektelic is. I know there are more options on the market this days and you can probably find better options as the MikroTik with it also includes PoE and WiFi. May be on the future I can try to do some performance tests comparing this two in order to see which ones performs better.
