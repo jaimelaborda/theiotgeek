@@ -10,6 +10,8 @@ tags:
   - gateway
 comments: false
 ---
+![]()
+
 LoRaWAN gateways are getting cheaper and cheaper everyday, and nowadays (May 2020) we have available 8 channel LoRaWAN compliant gateways for under 100€ ([TTIG](https://www.thethingsnetwork.org/docs/gateways/thethingsindoor/) is around [80€](https://es.rs-online.com/web/p/kits-de-desarrollo-de-radio-frecuencia/1843981/)). In the post we will see all the bells whistles on how to configure on of this gateway, the Tektelic KONA Micro Lite, to connect to The Things Network LoRaWAN server and we will compare it with another options available on the market.
 
 <!--more-->
@@ -42,7 +44,7 @@ This is the content you will found on the box, no surprise here:
 * Ethernet cable (2 meters)
 * External 868MHz indoor antenna
 
-The box is so simple but you would expect to much more.
+The box is so simple but you wouldn't expect to much more.
 
 # Take it apart!
 
@@ -78,13 +80,15 @@ The first thing you have to done is attach the external antena to the SMA connec
 
 You will have to register the gateway on [The Things Network Console](https://console.thethingsnetwork.org/). If you already have register a gateway on TTN this shouldn't be rare for you. You will find the gateway ID printed on a label on the bottom of the unit.
 
-![](/assets/images/tektelic_sticker.jpg)
+![](/assets/images/tektelic_sticker_1024x576.jpg)
 
-Acording to Tektelic power LED should become fixed, gateway should appears as connected on TTN and this should be everything (Plug and Play, right?). But I don't know if it was me but I did not get lucky, so I have to tick around a bit.
+So, it is just a matter of registering this ID as your gateway in the TTN Console, don't forget to check the "I'm using the legacy packet forwarder":
 
-It seems that my unit come configured for the US market, although I purchased in a UK shop and it cames on with a EU power adaptor, and configured to use the Tektelic network server.
+Well, according to Tektelic that should be pretty much all. Power LED should become fixed, gateway should appears as connected on TTN and this should be everything (Plug and Play, right?). But I don't know if it was me but I did not get lucky.
 
-In order to deeply configure you will need to find it in your network. The gateways come with DHCP dynamic IP activated as default so I will recommend to give it a static lease on your LAN so it always receive the same IP address (and then you will now it). This depends on the router brand so you will have to do some research for your particular one if you don't already know how to do it but usually it is under **Local Network -> DHCP Reservation** as can be seen here:
+It seems that my unit come configured for the US market (915MHz), although I purchased in a UK shop and it come on with a EU power adaptor, and configured to use the Tektelic network server. So I have to tick around a bit.
+
+In order to deeply configure the first thing you will need is to find it in your network. The gateways come with DHCP dynamic IP activated as default so I will recommend to give it a static lease on your LAN so it always receive the same IP address (and then you will now it). This depends on the router brand so you will have to do some research for your particular one if you don't already know how to do it but usually it is under **Local Network -> DHCP Reservation** as can be seen here:
 
 ![](/assets/images/mac_reservation.png)
 
@@ -92,9 +96,264 @@ In order to deeply configure you will need to find it in your network. The gatew
 
 Notice that you will find the MAC of the gateway on the sticker placed on the bottom of the unit with the Gateway-ID you have previously look at.
 
-You can also used some IP scanner to guess it as [Advance IP Scanner](https://www.advanced-ip-scanner.com/es/) if you don't want (or can't) do the IP reservation but the host name seems to be 'unknown' so may be you will have to done some connect/disconnet trials in order to guest it.
+You can also used some IP scanner to guess it as [Advance IP Scanner](https://www.advanced-ip-scanner.com/es/) if you don't want (or can't) do the IP reservation but the host name seems to be 'unknown' so may be you will have to done some connect/disconnect trials in order to guest it.
 
-Nevertheless, when you have the IP , y
+Nevertheless, when you have the IP, you are ready to SSH into it, right?... Nop, there is no SSH access. The software running in this gateway is very basic, in fact it is a FreeRTOS based running on a microcontroller, so it is very quick booting but we lose some cool services like SSH. The gateway is configuring using the old very simple and lightweight [TFTP](https://en.wikipedia.org/wiki/Trivial_File_Transfer_Protocol)  protocol and it works pretty well. This is just a transfer file protocol, just like FTP that may sounds more to you, so Tektelic defines a table with the files that you can send or request
+
+![](/assets/images/tektelic_table_lowres.jpg)
+
+In order to get ir working you just have (at least in my case) to update the *Customer.json* and the *LoRaWAN.json* files. *Customer.json* file will tell the gateway where to send the LoRa packets and the LoRaWAN.json will indicate in what RF channels it has to listen. The content you have to put in these files, as well as the firmware binary in case it need an update (mine is running with 1.7) can be downloaded from [Tektelic Support website](https://support.tektelic.com). Nevertheless, I let here the content from my configuration (I'm using EU868 and TTN EU server)
+
+**Customer.json**
+
+```json
+{
+    "private_key_password": "",
+    "network": "semtech",
+    "semtech": {
+        "host": "router.eu.thethings.network",
+        "up_port": 1700,
+        "down_port": 1700
+    }
+}
+
+```
+
+**LoRaWAN.json**
+
+```json
+{
+    "public": true,
+    "radio": [{
+            "enable": true,
+            "freq": 867500000
+        }, {
+            "enable": true,
+            "freq": 868500000
+        }
+    ],
+    "lora_multi": [{
+            "enable": true,
+            "radio": 1,
+            "offset": -400000,
+            "bandwidth": "",
+            "sf7": false,
+            "sf8": false,
+            "sf9": false,
+            "sf10": false,
+            "sf11": false,
+            "sf12": false
+        }, {
+            "enable": true,
+            "radio": 1,
+            "offset": -200000,
+            "bandwidth": "",
+            "sf7": false,
+            "sf8": false,
+            "sf9": false,
+            "sf10": false,
+            "sf11": false,
+            "sf12": false
+        }, {
+            "enable": true,
+            "radio": 1,
+            "offset": 0,
+            "bandwidth": "",
+            "sf7": false,
+            "sf8": false,
+            "sf9": false,
+            "sf10": false,
+            "sf11": false,
+            "sf12": false
+        }, {
+            "enable": true,
+            "radio": 0,
+            "offset": -400000,
+            "bandwidth": "",
+            "sf7": false,
+            "sf8": false,
+            "sf9": false,
+            "sf10": false,
+            "sf11": false,
+            "sf12": false
+        }, {
+            "enable": true,
+            "radio": 0,
+            "offset": -200000,
+            "bandwidth": "",
+            "sf7": false,
+            "sf8": false,
+            "sf9": false,
+            "sf10": false,
+            "sf11": false,
+            "sf12": false
+        }, {
+            "enable": true,
+            "radio": 0,
+            "offset": 0,
+            "bandwidth": "",
+            "sf7": false,
+            "sf8": false,
+            "sf9": false,
+            "sf10": false,
+            "sf11": false,
+            "sf12": false
+        }, {
+            "enable": true,
+            "radio": 0,
+            "offset": 200000,
+            "bandwidth": "",
+            "sf7": false,
+            "sf8": false,
+            "sf9": false,
+            "sf10": false,
+            "sf11": false,
+            "sf12": false
+        }, {
+            "enable": true,
+            "radio": 0,
+            "offset": 400000,
+            "bandwidth": "",
+            "sf7": false,
+            "sf8": false,
+            "sf9": false,
+            "sf10": false,
+            "sf11": false,
+            "sf12": false
+        }
+    ],
+    "lora_std": {
+        "enable": true,
+        "radio": 1,
+        "offset": -200000,
+        "bandwidth": "250kHz",
+        "spread_factor": "SF7"
+    },
+    "fsk": {
+        "enable": true,
+        "radio": 1,
+        "offset": 300000,
+        "bandwidth": "125kHz",
+        "datarate": 50000
+    },
+    "gain_lut": {
+        "size": 16,
+        "entries": [{
+                "dig_gain": 0,
+                "pa_gain": 0,
+                "dac_gain": 3,
+                "mix_gain": 9,
+                "rf_power": -1
+            }, {
+                "dig_gain": 0,
+                "pa_gain": 0,
+                "dac_gain": 3,
+                "mix_gain": 11,
+                "rf_power": 2
+            }, {
+                "dig_gain": 0,
+                "pa_gain": 0,
+                "dac_gain": 3,
+                "mix_gain": 13,
+                "rf_power": 4
+            }, {
+                "dig_gain": 0,
+                "pa_gain": 0,
+                "dac_gain": 3,
+                "mix_gain": 15,
+                "rf_power": 6
+            }, {
+                "dig_gain": 0,
+                "pa_gain": 1,
+                "dac_gain": 3,
+                "mix_gain": 8,
+                "rf_power": 8
+            }, {
+                "dig_gain": 0,
+                "pa_gain": 1,
+                "dac_gain": 3,
+                "mix_gain": 9,
+                "rf_power": 10
+            }, {
+                "dig_gain": 0,
+                "pa_gain": 1,
+                "dac_gain": 3,
+                "mix_gain": 10,
+                "rf_power": 11
+            }, {
+                "dig_gain": 0,
+                "pa_gain": 1,
+                "dac_gain": 3,
+                "mix_gain": 11,
+                "rf_power": 13
+            }, {
+                "dig_gain": 0,
+                "pa_gain": 1,
+                "dac_gain": 3,
+                "mix_gain": 12,
+                "rf_power": 15
+            }, {
+                "dig_gain": 0,
+                "pa_gain": 1,
+                "dac_gain": 3,
+                "mix_gain": 13,
+                "rf_power": 17
+            }, {
+                "dig_gain": 0,
+                "pa_gain": 1,
+                "dac_gain": 3,
+                "mix_gain": 15,
+                "rf_power": 19
+            }, {
+                "dig_gain": 0,
+                "pa_gain": 2,
+                "dac_gain": 3,
+                "mix_gain": 11,
+                "rf_power": 21
+            }, {
+                "dig_gain": 0,
+                "pa_gain": 2,
+                "dac_gain": 3,
+                "mix_gain": 12,
+                "rf_power": 23
+            }, {
+                "dig_gain": 0,
+                "pa_gain": 2,
+                "dac_gain": 3,
+                "mix_gain": 14,
+                "rf_power": 25
+            }, {
+                "dig_gain": 0,
+                "pa_gain": 2,
+                "dac_gain": 3,
+                "mix_gain": 15,
+                "rf_power": 26
+            }, {
+                "dig_gain": 0,
+                "pa_gain": 3,
+                "dac_gain": 3,
+                "mix_gain": 10,
+                "rf_power": 27
+            }
+        ]
+    }
+}
+
+```
+
+In order to transfer to the router, in Ubuntu you have to install tftp from apt in order to transfer these files:
+
+```shell
+$ sudo apt install tftp
+$ tftp
+tftp> connect 192.168.1.50
+tftp> put Customer.json Customer.json
+tftp> put LoRaWAN.json LoRaWAN.json
+```
+
+If you are using Windows you can use [tftpd64](http://tftpd32.jounin.net/tftpd32_download.html)
+
+If everything is okay, the power LED will stop blinking and come fixed, also it will appears as "Connected" in the TTN Console. If you didn't get lucky may be you need a firmware update... Try to read *Status.json* through TFTP in order to see if you are running the latest release (1.7 (release) 2019-09-13) at the time of writing this post.
 
 # Conclusions
 
