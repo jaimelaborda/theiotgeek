@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Tektelik KONA Micro Lite: A low cost LoRaWAN gateway"
+title: "Tektelic KONA Micro Lite: A low cost LoRaWAN gateway"
 published: 2020-05-31T19:02:34.635Z
 date: 2020-05-31T19:02:35.406Z
 thumbnail: /assets/images/tektelic-2.png
