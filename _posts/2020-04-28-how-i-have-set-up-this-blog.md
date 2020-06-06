@@ -16,9 +16,9 @@ Hello fellow readers and welcome to my blog! I have not found a better way to st
 
 ## Introduction
 
-I have decided to follow a modern serverless arquitecture using a static site generator, but why?.. Well, why not?
+I have decided to follow a modern serverless architecture using a static site generator, but why?.. Well, why not?
 
-Static site generators have been with us for more than \[REVISAR ESTO]. They are simple, they have no database, no updates, no mantenances... just your content!
+Static site generators have been with us for a while now. They are simple, they have no database, no updates, no maintenance... just your content!
 
 The most important thing when you set up a blog (at least a personal blog) is your content, thats where the effor should go. I wanted to look for the easiest way of starting to publish my content to the word as quick and easy as posible. 
 
@@ -34,9 +34,9 @@ And now the question is: Why Jekyll?... And the answer another time is *Why not?
 
 I really don't know why but the first thing it came up to my mind when I think about static site generator is Jekyll. Perhaps because it is (I think) one of the first to came along, perhaps it is because its integration with Github Pages... But for me talking about static site generator is talking about Jekyll. 
 
-How do they work? It is actually very simple: The user writes the content, normally, as a [Markdown ](https://en.wikipedia.org/wiki/Markdown)files, the static site generator, in this case Jekyll, take this Mardown files, and renders it to produce a complete, static HTML website ready to be deployed in your favourite hosting. Notice that this is plain HTML static files (plus css and js), so there is not interpreter, no PHP, no backend, no database, no nothing! So you just need a simple Apache that everybody gives for free nowaday that serve this files to the browser. This means that you will be able to host it in a [AWS S3](https://aws.amazon.com/s3/) bucket, a conventional shared hosting, [Github Pages](https://pages.github.com/) and so on.
+How do they work? It is actually very simple: The user writes the content, normally, as a [Markdown ](https://en.wikipedia.org/wiki/Markdown)files, the static site generator, in this case Jekyll, take this Markdown files, and renders it to produce a complete, static HTML website ready to be deployed in your favourite hosting. Notice that this is plain HTML static files (plus css and js), so there is not interpreter, no PHP, no backend, no database, no nothing! So you just need a simple Apache that everybody gives for free nowadays that serve this files to the browser. This means that you will be able to host it in a [AWS S3](https://aws.amazon.com/s3/) bucket, a conventional shared hosting, [Github Pages](https://pages.github.com/) and so on.
 
-Jekyll is an open source static site generator written in [Ruby ](https://www.ruby-lang.org/en/)(don't worry, you don't need to know Ruby in order to understand Jekyll, I don't know nothing about Ruby, in fact making this article is the first time I searched it in Google). It has [MIT ](https://opensource.org/licenses/MIT)open source license so feel free to use for whaterever you want.
+Jekyll is an open source static site generator written in [Ruby ](https://www.ruby-lang.org/en/)(don't worry, you don't need to know Ruby in order to understand Jekyll, I don't know nothing about Ruby, in fact making this article is the first time I searched it in Google). It has [MIT ](https://opensource.org/licenses/MIT)open source license so feel free to use for whatever you want.
 
 Jekyll, and all the others static generators, use what is known as layouts o templates. This is normally a HTML like file that has some directives that are substituted by your content. Nevertheless this is not intended to be a tutorial on how to use Jekyll, if you are looking for more information, the documentation of Jekyll is pretty good: <https://jekyllrb.com/docs/>
 
@@ -50,7 +50,7 @@ It provides you with a menu with all the post you have, and you can edit it with
 
 ![](/assets/images/netlify_cms.png){:.img-responsive}
 
-But how can I include this in my Jekyll blog? Easy! You just need to add a directory with two files (literaly) and you have everything. An index.html that that builds the page and powers Netlify CMS together with a javascript CDN that takes care of the login authentication, and a config.yml that will describe and configure all the necesary things . (Off topic: I don't know if I love or hate yml files. The indentation sometimes is a little nightmare)
+But how can I include this in my Jekyll blog? Easy! You just need to add a directory with two files (literally) and you have everything. An index.html that that builds the page and powers Netlify CMS together with a javascript CDN that takes care of the login authentication, and a config.yml that will describe and configure all the necessary things . (Off topic: I don't know if I love or hate yml files. The indentation sometimes is a little nightmare)
 
 I could have done a step-by-step guide to how I've put it together but I think it makes no sense as there are already good guides that I have follow on (Links below on the bibliography)
 
